@@ -78,7 +78,7 @@ import User from './user/User'
 
 const App = () => {
   const [count, setCount] = useState(0);
-  console.log("app page rendered");
+  // console.log("app page rendered");
   return (
     <>
     <div>App</div>

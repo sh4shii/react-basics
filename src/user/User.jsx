@@ -4,7 +4,7 @@ import Order from './order/Order'
 const User = () => {
   const [name, setName] = useState("");
 
-  console.log("user page rendered");
+  // console.log("user page rendered");
   return (
     <div style={{border: '2px solid red'}}>
       <p>Enter your name:</p>

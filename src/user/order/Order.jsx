@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import User from '../User'
+// import User from '../User'
 
 // const Order = ({userName}) => {
 const Order = () => {
@@ -17,7 +17,7 @@ const Order = () => {
     setInputValue(e.target.value);
   };
 
-  console.log("orders page rendered");
+  // console.log("orders page rendered");
 
   return (
   <div style={{border: '3px solid green'}}>
