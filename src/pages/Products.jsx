@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/Products.css'
+import useFetch from '../hooks/useFetch'
 
 const Products = () => {
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const { data: products, loading, error } = useFetch('https://jsonplaceholder.typicode.com/posts')
 
-  const fetchProducts = async () => {
-    try {
-      setLoading(true)
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts')
-      if (!response.ok) {
-        throw new Error('Failed to fetch products')
-      }
-      const data = await response.json()
-      setProducts(data)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }
+  // const [products, setProducts] = useState([])
+  // const [loading, setLoading] = useState(true)
+  // const [error, setError] = useState(null)
 
-  useEffect(() => {
-    console.log("useEffect ran")
-    fetchProducts()
-  }, [])
+  // const fetchProducts = async () => {
+  //   try {
+  //     setLoading(true)
+  //     const response = await fetch('https://jsonplaceholder.typicode.com/posts')
+  //     if (!response.ok) {
+  //       throw new Error('Failed to fetch products')
+  //     }
+  //     const data = await response.json()
+  //     setProducts(data)
+  //   } catch (err) {
+  //     setError(err.message)
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
 
-  console.log("products page rendered")
+  // useEffect(() => {
+  //   console.log("useEffect ran")
+  //   fetchProducts()
+  // }, [])
 
   return (
     <div className="container">

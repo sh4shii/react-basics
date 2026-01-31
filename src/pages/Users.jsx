@@ -1,39 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import useFetch from '../hooks/useFetch'
 import '../styles/Users.css'
 
 const Users = () => {
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-
-  // useEffect(() => {
-    // function to call api inside useEffect
-  // }, [dependency Array])
-
-
-  // api call -> fetch, axios
-
-  const fetchUsers = async () => {
-    try {
-      setLoading(true)
-      const response = await axios.get('https://jsonplaceholder.typicode.com/users')
-      setUsers(response.data)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    console.log("useEffect ran");
-    fetchUsers()
-  }, [])
-
-  console.log("users page renderded");
+  const { data: users, loading, error } = useFetch('https://jsonplaceholder.typicode.com/users')
 
   return (
     <div className="container">
