@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useFetch from '../hooks/useFetch'
 import '../styles/Users.css'
+import useSWR from 'swr'
+import { swrConfig } from '../util/swrUtil'
 
 const Users = () => {
-  const { data: users, loading, error } = useFetch('https://jsonplaceholder.typicode.com/users')
+  // const { data: users, loading, error } = useFetch('https://jsonplaceholder.typicode.com/users')
+  const { data: users, error, isLoading: loading } = useSWR('https://jsonplaceholder.typicode.com/users', swrConfig)
 
   return (
     <div className="container">

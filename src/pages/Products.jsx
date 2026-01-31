@@ -1,34 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import '../styles/Products.css'
-import useFetch from '../hooks/useFetch'
+import useSWR from 'swr'
+import { swrConfig } from '../util/swrUtil'
 
 const Products = () => {
-  const { data: products, loading, error } = useFetch('https://jsonplaceholder.typicode.com/posts')
+  // const { data: products, loading, error } = useFetch('https://jsonplaceholder.typicode.com/posts')
 
-  // const [products, setProducts] = useState([])
-  // const [loading, setLoading] = useState(true)
-  // const [error, setError] = useState(null)
-
-  // const fetchProducts = async () => {
-  //   try {
-  //     setLoading(true)
-  //     const response = await fetch('https://jsonplaceholder.typicode.com/posts')
-  //     if (!response.ok) {
-  //       throw new Error('Failed to fetch products')
-  //     }
-  //     const data = await response.json()
-  //     setProducts(data)
-  //   } catch (err) {
-  //     setError(err.message)
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   console.log("useEffect ran")
-  //   fetchProducts()
-  // }, [])
+  const { data: products, error, isLoading: loading } = useSWR('https://jsonplaceholder.typicode.com/posts', swrConfig)
 
   return (
     <div className="container">

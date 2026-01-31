@@ -1,32 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
 import '../styles/Users.css'
-import useFetch from '../hooks/useFetch'
+import useSWR from 'swr'
+import { swrConfig } from '../util/swrUtil'
 
 const UserProfile = () => {
   const { userId } = useParams()
-  const { data: user, loading, error } = useFetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
-
-  // const [user, setUser] = useState(null)
-  // const [loading, setLoading] = useState(true)
-  // const [error, setError] = useState(null)
-
-  // const fetchUser = async () => {
-  //   try {
-  //     setLoading(true)
-  //     const response = await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`)
-  //     setUser(response.data)
-  //   } catch (err) {
-  //     setError(err.message)
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   fetchUser()
-  // }, [userId])
+  const { data: user, error, isLoading: loading } = useSWR(`https://jsonplaceholder.typicode.com/users/${userId}`, swrConfig)
 
   if (loading) return <div className="container"><p className="loading">Loading user...</p></div>
   if (error) return <div className="container"><p className="error">Error: {error}</p></div>
