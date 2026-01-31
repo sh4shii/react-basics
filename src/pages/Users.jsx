@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/Users.css'
 
@@ -44,13 +45,15 @@ const Users = () => {
       {!loading && !error && (
         <div className="users-grid">
           {users.map((user) => (
-            <div key={user.id} className="user-card">
-              <h2>{user.name}</h2>
-              <p><strong>Email:</strong> {user.email}</p>
-              <p><strong>Phone:</strong> {user.phone}</p>
-              <p><strong>Website:</strong> {user.website}</p>
-              <p><strong>Company:</strong> {user.company.name}</p>
-            </div>
+            <Link to={`/users/${user.id}`} key={user.id} style={{ textDecoration: 'none' }}>
+              <div className="user-card">
+                <h2>{user.name}</h2>
+                <p><strong>Email:</strong> {user.email}</p>
+                <p><strong>Phone:</strong> {user.phone}</p>
+                <p><strong>Website:</strong> {user.website}</p>
+                <p><strong>Company:</strong> {user.company.name}</p>
+              </div>
+            </Link>
           ))}
         </div>
       )}
